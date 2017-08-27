@@ -8,8 +8,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+		strict = false, 
 		features = "features", 
-		glue = { "com.selenium.stepDefinition" }
+		plugin = { "pretty", "json:target/cucumber.json" }, 
+		tags = { "~@ignore" }, 
+		glue = { "com.selenium.stepDefinition" }		
 		)
 
 public class TestRunner {
