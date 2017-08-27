@@ -18,14 +18,14 @@ public class FunctionalTest {
 		options.addArguments("--incognito");
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
 		driver = new ChromeDriver(capabilities);
 		driver.manage().window().maximize();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		//driver.close();
+		driver.close();
 	}
 
 }

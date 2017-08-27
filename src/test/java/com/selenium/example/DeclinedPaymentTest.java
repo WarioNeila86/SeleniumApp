@@ -66,8 +66,6 @@ public class DeclinedPaymentTest extends FunctionalTest {
         paymentPage.clickPayNowButton();
         
 		assertTrue(paymentPage.isPaymentDeclined());
-		
-		driver.close();
 	}
 
 }
