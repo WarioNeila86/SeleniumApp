@@ -41,10 +41,8 @@ public class SelectFlightPage extends PageObject {
 	 * 
 	 */
 	public void selectFirstFlight() {
-		System.out.println("Entering selectFirstFlight");
 		waitForAppear(firstFlightLocation);
 		firstFlight.findElement(standardFareButtonLocation).click();
-		System.out.println("Clicking firstFlight");
 	}
 	
     /**
