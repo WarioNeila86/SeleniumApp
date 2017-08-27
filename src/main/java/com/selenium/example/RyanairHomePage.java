@@ -12,61 +12,44 @@ import org.openqa.selenium.support.FindBy;
 
 /**
  *  This class represents the Ryanair homepage UI
- * @author Mario García
+ * @author Mario Garcia
  *
  */
 public class RyanairHomePage extends PageObject {
 	
-    private static final By ONE_WAY_RADIO_BUTTON = By.id("flight-search-type-option-one-way");
-    private static final By DEPARTURE_AIRPORT = By.cssSelector(".initial>span");
-    private static final By DESTINATION_AIRPORT = By.cssSelector(".pane.right .core-list-item-rounded>span");
-    private static final By DATE_PICKER = By.className("content-box");
-
-	// This element represents the one way flight radio button
-	@FindBy(id="flight-search-type-option-one-way")
-	private WebElement oneWay;
+    @FindBy(id="flight-search-type-option-one-way")
+	private WebElement oneWayButton;
+	private By oneWayButtonLocation = By.id("flight-search-type-option-one-way");
 
 	@FindBy(css="input[placeholder=\"Destination airport\"]")
 	private WebElement destinationInput;
 	
 	@FindBy(css=".pane.right .core-list-item-rounded>span")
 	private WebElement destinationAirport;
+	private By destinationAirportLocation = By.cssSelector(".pane.right .core-list-item-rounded>span");
 	
 	@FindBy(css="input[placeholder=\"Departure airport\"]")
 	private WebElement departureInput;
 	
 	@FindBy(css=".initial>span")
 	private WebElement departureAirport;
-	
-	// These properties represent the fields used to compose the departure date
-	@FindBy(xpath="//*[@id=\"row-dates-pax\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/input[1]")
-	private WebElement flyOutDay;
-	
-	@FindBy(xpath="//*[@id=\"row-dates-pax\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/input[2]")
-	private WebElement flyOutMonth;
-	
-	@FindBy(xpath="//*[@id=\"row-dates-pax\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/input[3]")
-	private WebElement flyOutYear;
-	
-	// This property represents the "Let's go" button
+	private By departureAirportLocation = By.cssSelector(".initial>span");
 	
 	@FindBy(css="[translate=\"common.buttons.lets_go\"]")
 	private WebElement letsGoButton;
 
+	private By datePickerLocation = By.className("content-box");
+	
 	public RyanairHomePage(WebDriver driver) {
 		super(driver);
 	}
 	
-//    protected ExpectedCondition<WebElement> getPageLoadCondition() {
-//        return ExpectedConditions.visibilityOfElementLocated(MAIN_VIEW);
-//    }
-
     /**
      * Selects "One way" flights by clicking on the radio button
      */
 	public void selectOneWayFlights() {
-		waitForAppear(ONE_WAY_RADIO_BUTTON);
-		driver.findElement(ONE_WAY_RADIO_BUTTON).click();
+		waitForAppear(oneWayButtonLocation);
+		oneWayButton.click();
 	}
 	
 	/**
@@ -76,7 +59,7 @@ public class RyanairHomePage extends PageObject {
 	public void enterDestination(String destination) {
 		destinationInput.clear();
 		destinationInput.sendKeys(destination);
-		waitForAppear(DESTINATION_AIRPORT);
+		waitForAppear(destinationAirportLocation);
 		destinationAirport.click();
 	}
 	
@@ -87,7 +70,7 @@ public class RyanairHomePage extends PageObject {
 	public void enterDeparture(String departure) {
 		departureInput.clear();
 		departureInput.sendKeys(departure);
-		waitForAppear(DEPARTURE_AIRPORT);
+		waitForAppear(departureAirportLocation);
 		departureAirport.click();
 	}
 	
@@ -101,7 +84,7 @@ public class RyanairHomePage extends PageObject {
         calendar.add(Calendar.DAY_OF_MONTH, 10);
         Date departureDate = calendar.getTime();
         String departureDateString = dateFormat.format(departureDate);
-        waitForAppear(DATE_PICKER);
+        waitForAppear(datePickerLocation);
         driver.findElement(By.cssSelector("[data-id=\"" + departureDateString + "\"]")).click();
     }
 	

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 
 /**
  * This class represents the payment page UI
- * @author Mario García
+ * @author Mario Garcia
  *
  */
 public class PaymentPage extends PageObject {
@@ -16,9 +16,11 @@ public class PaymentPage extends PageObject {
 	
 	@FindBy(className="core-btn-secondary")
 	private WebElement loginButton;
+	private By loginButtonLocation = By.className("login-register");
 	
 	@FindBy(css="input[placeholder=\"Email address\"]")
 	private WebElement emailInput;
+	private By emailInputLocation = By.cssSelector("input[placeholder=\"Email address\"]");
 	
 	@FindBy(css="input[placeholder=\"Password\"]")
 	private WebElement passwordInput;
@@ -31,6 +33,7 @@ public class PaymentPage extends PageObject {
 	
 	@FindBy(css="[id*=title]")
 	private WebElement titleSelect;
+	private By titleSelectLocation = By.cssSelector("[id*=title]");
 	
     @FindBy(css="[id*=firstName]")
     private WebElement firstNameInput;
@@ -40,6 +43,7 @@ public class PaymentPage extends PageObject {
     
     @FindBy(css="[id*=save-to-companions]")
     private WebElement savePassengerCheckbox;
+    private By savePassengerCheckboxLocation = By.cssSelector("[id*=save-to-companions]");
     
     @FindBy(css="[name=\"phoneNumberCountry\"]")
     private WebElement phoneNumberCountrySelect;
@@ -84,6 +88,7 @@ public class PaymentPage extends PageObject {
     
     @FindBy(css="[ng-switch-when=\"PaymentDeclined\"]")
     private WebElement paymentDeclinedAlert;
+    private By paymentDeclinedAlertLocation = By.cssSelector("[ng-switch-when=\"PaymentDeclined\"]");
     
     
 	public PaymentPage(WebDriver driver) {
@@ -95,7 +100,7 @@ public class PaymentPage extends PageObject {
 	 */
 	
 	public void selectLoginOption() {
-		waitForAppear(By.className("login-register"));
+		waitForAppear(loginButtonLocation);
 		loginButton.click();
 	}
 	
@@ -106,7 +111,7 @@ public class PaymentPage extends PageObject {
 	 */
 	
 	public void enterLoginDetails(String username, String password) {
-		waitForAppear(By.cssSelector("input[placeholder=\"Email address\"]"));
+		waitForAppear(emailInputLocation);
 		emailInput.clear();
 		emailInput.sendKeys(username);
 		passwordInput.clear();
@@ -139,13 +144,13 @@ public class PaymentPage extends PageObject {
 	 */
 	
 	public void enterPassengerDetails(String title, String firstName, String lastName) {
-		waitForAppear(By.cssSelector("[id*=title]"));
+		waitForAppear(titleSelectLocation);
 		Select select = new Select(titleSelect);
         select.selectByVisibleText(title);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
         // Disable remember passenger checkbox
-        waitForAppear(By.cssSelector("[id*=save-to-companions]"));
+        waitForAppear(savePassengerCheckboxLocation);
         if (savePassengerCheckbox.isSelected()) {
         	savePassengerCheckbox.click();
         }
@@ -159,18 +164,8 @@ public class PaymentPage extends PageObject {
 	public void enterContactDetails(String country, String phoneNumber) {
 		Select select = new Select(phoneNumberCountrySelect);
 		select.selectByVisibleText(country);
-		//waitForAppear(By.cssSelector("[name=\"phoneNumber\"]"));
 		phoneNumberInput.sendKeys(phoneNumber);
-//		Actions actions = new Actions(driver);
-//		actions.moveToElement(phoneNumberInput);
-//		actions.click();
-//		actions.sendKeys(phoneNumber);
-//		actions.build().perform();
 	}
-	
-	/*
-	 * The following methods functionality is self-explanatory 
-	 */
 	
 	public void enterCardNumber(String cardNumber) {
 		cardNumberInput.sendKeys(cardNumber);
@@ -219,7 +214,7 @@ public class PaymentPage extends PageObject {
 	}
 	
 	public boolean isPaymentDeclined() {
-		waitForAppear(By.cssSelector("[ng-switch-when=\"PaymentDeclined\"]"));
+		waitForAppear(paymentDeclinedAlertLocation);
 		return paymentDeclinedAlert.isDisplayed();
 	}
 
