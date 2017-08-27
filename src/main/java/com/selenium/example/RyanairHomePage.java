@@ -75,13 +75,13 @@ public class RyanairHomePage extends PageObject {
 	}
 	
     /**
-     * Selects departure date (10 days from today).
+     * Selects departure date
+     * @param daysOffset number of days from today to establish flight date
      */
-    public void selectFlightDate() {
+    public void selectFlightDate(int daysOffset) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        // Add 10 days to current date
-        calendar.add(Calendar.DAY_OF_MONTH, 10);
+        calendar.add(Calendar.DAY_OF_MONTH, daysOffset);
         Date departureDate = calendar.getTime();
         String departureDateString = dateFormat.format(departureDate);
         waitForAppear(datePickerLocation);

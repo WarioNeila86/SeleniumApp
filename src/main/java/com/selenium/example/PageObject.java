@@ -7,21 +7,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-// This class implements a base Page object
-// It is an abstract class that cannot be instantiated
+/**
+ * This class implements a base Page object
+ * It is an abstract class that cannot be instantiated
+ * @author Mario Garcia
+ *
+ */
 
 public abstract class PageObject {
 	
     private static final long TIME_LIMIT_SECONDS = 21;
     private static final long SLEEP_MILLISECONDS = 3000;
-	
-//    /**
-//     * This method will be implemented by subclasses
-//     * It will confirm that the desired web page has been loaded by waiting to a WebElement to appear
-//     * 
-//     * @return the WebElement is visible
-//     */
-//    protected abstract ExpectedCondition<WebElement> getPageLoadCondition();
     
     protected WebDriver driver;
 	

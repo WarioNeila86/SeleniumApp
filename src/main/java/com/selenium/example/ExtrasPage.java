@@ -7,19 +7,18 @@ import org.openqa.selenium.support.FindBy;
 
 /** 
  * This class represents the extras selection page UI
- * @author Mario García
+ * @author Mario Garcia
  *
  */
 public class ExtrasPage extends PageObject {
 	
-	private static final By CHECK_OUT_BUTTON = By.cssSelector(".trips-cnt>button");
-	private static final By OK_THANKS_BUTTON = By.cssSelector("button.core-btn-ghost.seat-prompt-popup-footer-btn");
-	
 	@FindBy(css=".trips-cnt>button")
 	private WebElement checkOutButton;
+	private By checkOutButtonLocation = By.cssSelector(".trips-cnt>button");
 	
 	@FindBy(css="button.core-btn-ghost.seat-prompt-popup-footer-btn")
 	private WebElement okThanksButton;
+	private By okThanksButtonLocation = By.cssSelector("button.core-btn-ghost.seat-prompt-popup-footer-btn");
 
 	public ExtrasPage(WebDriver driver) {
 		super(driver);
@@ -30,7 +29,7 @@ public class ExtrasPage extends PageObject {
 	 */
 	
 	public void clickCheckOutButton() {
-		waitForAppear(CHECK_OUT_BUTTON);
+		waitForAppear(checkOutButtonLocation);
 		checkOutButton.click();
 	}
 	
@@ -40,7 +39,7 @@ public class ExtrasPage extends PageObject {
 	 * @return a new instance of PaymentPage
 	 */
 	public PaymentPage clickOkThanksButton() {
-		waitForAppear(OK_THANKS_BUTTON);
+		waitForAppear(okThanksButtonLocation);
 		okThanksButton.click();
 		return new PaymentPage(driver);
 	}

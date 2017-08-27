@@ -9,7 +9,7 @@ public class DeclinedPaymentTest extends FunctionalTest {
 
 	@Test
 	public void test() {
-		String url = "https://www.ryanair.com/ie/en/"; 
+		String url = "https://www.ryanair.com/ie/en/";
 		String departureAirport = "DUB";
 		String destinationAirport = "SXF";
         String username = "l598328@mvrht.net";
@@ -37,10 +37,9 @@ public class DeclinedPaymentTest extends FunctionalTest {
         homePage.selectOneWayFlights();
         homePage.enterDeparture(departureAirport);
         homePage.enterDestination(destinationAirport);
-        homePage.selectFlightDate();
+        homePage.selectFlightDate(5);
         
         SelectFlightPage flightPage = homePage.clickLetsGoButton();
-        flightPage.waitForPricesToBeLoaded();
         flightPage.selectFirstFlight();
         flightPage.selectStandardFare();
 
