@@ -22,4 +22,6 @@ This test verifies an error message after trying to book a flight using a wrong 
 * Generated HTML report can be found at `target\site\cucumber-reports\feature-overview.html`
 * JSON report can be found at `target\cucumber.json`
 
+---
+
 **Please note:** the application has not been tested on Mac OSX due to lack of hardware
