@@ -7,7 +7,7 @@ This test verifies an error message after trying to book a flight using a wrong 
 * Maven 3.3
 * Git
 * Google Chrome
-* **Last minute requirement** - I've just noticed that the test has been implemented using a screen resolution of 1920x1080. The test may not work at lower resolutions.
+* **Screen resolution** - I've just noticed that the test has been implemented using a screen resolution of 1920x1080. The test may not work at lower resolutions.
 
 ## How to execute the test
 ### From command line
@@ -21,3 +21,5 @@ This test verifies an error message after trying to book a flight using a wrong 
 ## Test results
 * Generated HTML report can be found at `target\site\cucumber-reports\feature-overview.html`
 * JSON report can be found at `target\cucumber.json`
+
+**Please note:** the application has not been tested on Mac OSX due to lack of hardware
